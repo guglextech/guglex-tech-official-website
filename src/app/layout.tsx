@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     apple: [{ url: "/favicon/apple-icon.png", sizes: "180x180" }],
   },
   manifest: "/favicon/manifest.json",
+  other: {
+    "facebook-domain-verification": "q4ga7k3y5i0busmqpm7744flbxvo67",
+  },
 };
 
 export default function RootLayout({
