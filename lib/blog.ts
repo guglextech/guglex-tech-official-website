@@ -107,3 +107,35 @@ export function getPostsByCategory(category: string): BlogPost[] {
   return getAllPosts().filter((post) => post.category === category);
 }
 
+export function getCategories(): string[] {
+  return [...new Set(getAllPosts().map((post) => post.category))];
+}
+
+export function estimateReadingMinutes(content: string): number {
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
+export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
+  const current = getPostBySlug(slug);
+  const others = getAllPosts().filter((post) => post.slug !== slug);
+
+  if (!current) {
+    return others.slice(0, limit);
+  }
+
+  return others
+    .map((post) => {
+      let score = 0;
+      if (post.category === current.category) score += 3;
+      score += post.tags.filter((tag) => current.tags.includes(tag)).length;
+      return { post, score };
+    })
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.post.date < b.post.date ? 1 : -1;
+    })
+    .slice(0, limit)
+    .map(({ post }) => post);
+}
+

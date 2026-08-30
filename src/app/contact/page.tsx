@@ -1,8 +1,31 @@
 'use client';
 
 import { useState } from 'react';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import { toast } from 'sonner';
+import SiteShell from '@/components/SiteShell';
+import PageHero from '@/components/PageHero';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
+const projectTypes = [
+  { value: 'Payment Integration', label: 'Payment integration' },
+  { value: 'USSD Development', label: 'USSD development' },
+  { value: 'Business Website', label: 'Business website' },
+  { value: 'E-commerce Website', label: 'Ecommerce' },
+  { value: 'Custom Software', label: 'Custom software' },
+  { value: 'Mobile App', label: 'Mobile app' },
+  { value: 'Not Sure (Need Advice)', label: 'Not sure — need advice' },
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -34,229 +57,163 @@ export default function Contact() {
 
       setStatus('success');
       setFormData({ name: '', email: '', company: '', websiteType: '', message: '' });
+      toast.success("Message sent. We'll get back to you shortly.");
     } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to send message.';
       setStatus('error');
-      setErrorMsg(err instanceof Error ? err.message : 'Failed to send message.');
+      setErrorMsg(message);
+      toast.error(message);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
     if (status === 'error') setStatus('idle');
   };
 
   return (
-    <>
-      <Navigation />
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-black text-white overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 brand-bar" />
-          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">Get In Touch</h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              Let's discuss how we can help transform your business with innovative technology solutions
-            </p>
-          </div>
-        </section>
+    <SiteShell>
+      <PageHero
+        kicker="Contact"
+        title="Tell us what you're building."
+        description="Share a few details about your product, payment flow, or platform challenge. We typically respond within one business day."
+      />
 
-        {/* Contact Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Form */}
-              <div>
-                <h2 className="text-3xl font-bold text-black mb-6">Send us a message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
+      <section className="bg-background py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <h2 className="mb-8 text-2xl font-semibold tracking-tight">Send a message</h2>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Name *</Label>
+                    <Input
                       id="name"
                       name="name"
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all"
                       placeholder="Your name"
                     />
                   </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input
                       id="email"
                       name="email"
+                      type="email"
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all"
-                      placeholder="your.email@example.com"
+                      placeholder="you@company.com"
                     />
                   </div>
-                  
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all"
-                      placeholder="Your company name"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="websiteType" className="block text-sm font-medium text-gray-700 mb-2">
-                      Website Type Needed *
-                    </label>
-                    <select
-                      id="websiteType"
-                      name="websiteType"
-                      required
-                      value={formData.websiteType}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all bg-white appearance-none"
-                    >
-                      <option value="" disabled>Select a website type</option>
-                      <option value="Business Website">Business Website</option>
-                      <option value="Small Business Website">Small Business Website</option>
-                      <option value="Company Website">Company Website</option>
-                      <option value="E-commerce Website">E-commerce Website</option>
-                      <option value="Portfolio Website">Portfolio Website</option>
-                      <option value="Service Website">Service Website</option>
-                      <option value="Website Redesign">Website Redesign</option>
-                      <option value="Custom Website">Payment Integration</option>
-                      <option value="Custom Website"> USSD Development</option>
-                      <option value="Not Sure (Need Advice)">Not Sure (Need Advice)</option>
-                    </select>
-                  </div>
+                </div>
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all resize-none"
-                      placeholder="Tell us about your project..."
-                    />
-                  </div>
-                  
-                  {status === 'success' && (
-                    <div className="flex items-center gap-3 px-5 py-4 bg-brand-green/10 border border-brand-green/30 text-brand-green">
-                      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="font-medium">
-                        Message sent! We&apos;ll get back to you shortly.
-                      </span>
-                    </div>
-                  )}
+                <div className="space-y-2">
+                  <Label htmlFor="company">Company</Label>
+                  <Input
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Company name"
+                  />
+                </div>
 
-                  {status === 'error' && (
-                    <div className="flex items-center gap-3 px-5 py-4 bg-red-50 border border-red-200 text-red-800">
-                      <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z" />
-                      </svg>
-                      <span className="font-medium">{errorMsg}</span>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="w-full px-8 py-4 bg-brand-blue text-white font-semibold hover:bg-[#0176cc] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                <div className="space-y-2">
+                  <Label htmlFor="websiteType">Project type *</Label>
+                  <Select
+                    value={formData.websiteType || null}
+                    onValueChange={(value) => {
+                      setFormData({ ...formData, websiteType: value ?? '' });
+                      if (status === 'error') setStatus('idle');
+                    }}
                   >
-                    {status === 'loading' ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              </div>
+                    <SelectTrigger id="websiteType" className="w-full">
+                      <SelectValue placeholder="Select a project type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {projectTypes.map((type) => (
+                        <SelectItem key={type.value} value={type.value}>
+                          {type.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* Contact Info */}
-              <div>
-                <h2 className="text-3xl font-bold text-black mb-6">Contact Information</h2>
-                <div className="space-y-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-brand-blue flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-black mb-1">Email</h3>
-                      <p className="text-gray-600">guglex.technologies@gmail.com</p>
-                    </div>
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message *</Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your project..."
+                  />
+                </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-brand-green flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-black mb-1">Phone</h3>
-                      <p className="text-gray-600">+233 550982043</p>
-                    </div>
-                  </div>
+                {status === 'success' && (
+                  <Alert>
+                    <AlertTitle>Message sent</AlertTitle>
+                    <AlertDescription>We&apos;ll get back to you shortly.</AlertDescription>
+                  </Alert>
+                )}
 
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-brand-orange flex items-center justify-center flex-shrink-0">
-                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-black mb-1">Address</h3>
-                      <p className="text-gray-600">Accra, Ghana</p>
-                    </div>
-                  </div>
+                {status === 'error' && (
+                  <Alert variant="destructive">
+                    <AlertTitle>Could not send</AlertTitle>
+                    <AlertDescription>{errorMsg}</AlertDescription>
+                  </Alert>
+                )}
 
-                  <div className="pt-8 border-t border-gray-200">
-                    <h3 className="font-semibold text-black mb-4">Business Hours</h3>
-                    <div className="space-y-2 text-gray-600">
-                      <div className="flex justify-between">
-                        <span>Monday - Friday</span>
-                        <span>8:00 AM - 6:00 PM</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Saturday</span>
-                        <span>12:00 PM - 6:00 PM</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Sunday</span>
-                        <span>Closed</span>
-                      </div>
+                <Button type="submit" size="lg" disabled={status === 'loading'}>
+                  {status === 'loading' ? 'Sending...' : 'Send message'}
+                </Button>
+              </form>
+            </div>
+
+            <div className="lg:col-span-4 lg:col-start-9">
+              <h2 className="mb-6 text-2xl font-semibold tracking-tight">Details</h2>
+              <div className="space-y-6 border-t pt-6 text-sm">
+                <div>
+                  <p className="mb-1 font-medium">Email</p>
+                  <p className="text-muted-foreground">guglex.technologies@gmail.com</p>
+                </div>
+                <div>
+                  <p className="mb-1 font-medium">Phone</p>
+                  <p className="text-muted-foreground">+233 550 982 043</p>
+                </div>
+                <div>
+                  <p className="mb-1 font-medium">Location</p>
+                  <p className="text-muted-foreground">Accra, Ghana</p>
+                </div>
+                <div className="border-t pt-6">
+                  <p className="mb-3 font-medium">Business hours</p>
+                  <div className="text-muted-foreground space-y-2">
+                    <div className="flex justify-between gap-4">
+                      <span>Mon – Fri</span>
+                      <span>8:00 AM – 6:00 PM</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span>Saturday</span>
+                      <span>12:00 PM – 6:00 PM</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span>Sunday</span>
+                      <span>Closed</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </section>
+    </SiteShell>
   );
 }
-

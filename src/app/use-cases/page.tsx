@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import SiteShell from '@/components/SiteShell';
+import PageHero from '@/components/PageHero';
+import SiteCta from '@/components/SiteCta';
+import { ArrowUpRight } from 'lucide-react';
 
 const caseStudies = [
   {
@@ -105,47 +105,34 @@ const caseStudies = [
 
 export default function UseCases() {
   return (
-    <>
-      <Navigation />
-      <main className="pt-16">
-        {/* Hero */}
-        <section className="relative bg-black text-white overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(1,148,255,0.16),_transparent_55%)]" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-brand-blue mb-6">
-              Research
-            </p>
-            <h1 className="max-w-3xl text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
-              Selected work in products and payments.
-            </h1>
-            <p className="max-w-xl text-lg md:text-xl text-white/65 leading-relaxed">
-              Real platforms and integrations we&apos;ve designed, built, and
-              shipped for African markets.
-            </p>
-          </div>
-        </section>
+    <SiteShell>
+      <PageHero
+        kicker="Use cases"
+        title="Selected work in products and payments."
+        description="Real platforms and integrations we've designed, built, and shipped for African markets."
+      />
 
         {/* Case studies */}
-        <section className="py-24 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16 md:mb-20">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-blue mb-4">
+        <section className="bg-background py-20 md:py-28">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 max-w-2xl md:mb-16">
+              <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
                 Case studies
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-5">
+              <h2 className="mb-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
                 Projects that moved money and served users.
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 Selected client work across ecommerce, payments, publishing, and
                 membership platforms — built to work in production.
               </p>
             </div>
 
-            <div className="border-t border-gray-200">
+            <div className="border-t border-border">
               {caseStudies.map((study, index) => (
                 <article
                   key={study.name}
-                  className="group grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 border-b border-gray-200 py-10 md:py-14"
+                  className="group grid grid-cols-1 gap-6 border-b border-border py-10 lg:grid-cols-12 lg:gap-10 md:py-12"
                 >
                   <div className="lg:col-span-1">
                     <span className="text-sm font-semibold text-brand-blue tabular-nums">
@@ -154,10 +141,10 @@ export default function UseCases() {
                   </div>
 
                   <div className="lg:col-span-4">
-                    <p className="text-sm font-medium text-gray-500 mb-2">
+                    <p className="mb-2 text-sm text-muted-foreground">
                       {study.category}
                     </p>
-                    <h3 className="text-lg md:text-xl font-bold text-black tracking-tight group-hover:text-brand-blue transition-colors">
+                    <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-brand-blue md:text-xl">
                       {study.name}
                     </h3>
                     {study.href && (
@@ -174,7 +161,7 @@ export default function UseCases() {
                   </div>
 
                   <div className="lg:col-span-4">
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="leading-relaxed text-muted-foreground">
                       {study.summary}
                     </p>
                   </div>
@@ -184,9 +171,9 @@ export default function UseCases() {
                       {study.outcomes.map((outcome) => (
                         <li
                           key={outcome}
-                          className="text-sm text-gray-500 flex items-start gap-2"
+                          className="flex items-start gap-2 text-sm text-muted-foreground"
                         >
-                          <span className="mt-2 h-1 w-1 rounded-full bg-brand-blue flex-shrink-0" />
+                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand-blue" />
                           {outcome}
                         </li>
                       ))}
@@ -199,18 +186,18 @@ export default function UseCases() {
         </section>
 
         {/* Focus areas */}
-        <section className="py-24 md:py-28 bg-gray-50 border-y border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-14">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-green mb-4">
+        <section className="border-y border-border bg-muted py-20 md:py-28">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 max-w-2xl">
+              <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
                 Focus
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-5">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
                 Where we deliver the most value.
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
               {[
                 {
                   title: 'Consumer payment products',
@@ -229,11 +216,10 @@ export default function UseCases() {
                 },
               ].map((item) => (
                 <div key={item.title}>
-                  <div className="h-px w-12 bg-brand-blue mb-6" />
-                  <h3 className="text-xl font-bold text-black mb-3">
+                  <h3 className="mb-3 text-xl font-semibold text-foreground">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="leading-relaxed text-muted-foreground">
                     {item.description}
                   </p>
                 </div>
@@ -242,39 +228,12 @@ export default function UseCases() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="relative bg-black text-white overflow-hidden">
-          <div className="brand-bar" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(1,148,255,0.15),_transparent_50%)]" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-28">
-            <div className="max-w-3xl">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
-                Need a payment product or integration?
-              </h2>
-              <p className="text-lg text-white/65 leading-relaxed mb-10 max-w-xl">
-                Tell us what you&apos;re building. We&apos;ll help you scope the
-                right approach for Hubtel, Paystack, or a custom payments flow.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold hover:bg-[#0176cc] transition-colors"
-                >
-                  Start a conversation
-                  <ArrowRight className="w-4 h-4" strokeWidth={2} />
-                </Link>
-                <Link
-                  href="/services"
-                  className="inline-flex items-center justify-center px-8 py-4 border border-white/25 text-white font-semibold hover:border-white hover:bg-white/5 transition-colors"
-                >
-                  View services
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+      <SiteCta
+        title="Need a payment product or integration?"
+        description="Tell us what you're building. We'll help you scope the right approach for Hubtel, Paystack, or a custom payments flow."
+        primary={{ href: '/contact', label: 'Start a conversation' }}
+        secondary={{ href: '/services', label: 'View services' }}
+      />
+    </SiteShell>
   );
 }

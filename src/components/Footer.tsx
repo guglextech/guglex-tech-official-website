@@ -1,95 +1,101 @@
 import Link from 'next/link';
 import BrandLogo from '@/components/BrandLogo';
-
-const companyLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Use cases', href: '/use-cases' },
-  { label: 'Companies', href: '/companies' },
-];
+import { Separator } from '@/components/ui/separator';
 
 const productLinks = [
-  { label: 'Ewale', href: 'https://ewalepay.com' },
-  {
-    label: 'Gyepayments',
-    href: 'https://merchant.guglextechnologies.com/login',
-  },
+  { label: 'Overview', href: '/product' },
+  { label: 'Ewale', href: 'https://ewalepay.com', external: true },
+  { label: 'Gyepayments', href: 'https://gyepayments.guglextechnologies.com', external: true },
+];
+
+const companyLinks = [
+  { label: 'About us', href: '/about' },
+  { label: 'Use cases', href: '/use-cases' },
+  { label: 'Partners', href: '/companies' },
+  { label: 'Services', href: '/services' },
 ];
 
 const resourceLinks = [
+  { label: 'Developers', href: '/developers' },
   { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Contact', href: '/contact' },
 ];
 
+function FooterLink({
+  href,
+  label,
+  external,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+}) {
+  const className = 'text-sm text-muted-foreground transition-colors hover:text-foreground';
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {label}
+    </Link>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
-        <div className="grid grid-cols-2 gap-x-10 gap-y-14 md:grid-cols-12 md:gap-x-12">
-          <div className="col-span-2 md:col-span-4 lg:col-span-5">
-              <BrandLogo />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/50">
-              Product-focused software for payments, utilities, and digital
-              services across Africa.
+    <footer className="border-t bg-card text-foreground">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-12 md:gap-8">
+          <div className="col-span-2 md:col-span-4">
+            <BrandLogo />
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              Payments, products, and platforms for businesses across Africa.
             </p>
           </div>
 
-          <div className="md:col-span-2 md:col-start-6 lg:col-start-7">
-            <h4 className="text-xs font-medium uppercase tracking-wider text-white/40">
-              Company
+          <div className="md:col-span-2 md:col-start-6">
+            <h4 className="text-muted-foreground text-[11px] font-semibold tracking-[0.14em] uppercase">
+              Product
             </h4>
-            <ul className="mt-5 space-y-3.5">
-              {companyLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
+            <ul className="mt-4 space-y-3">
+              {productLinks.map((link) => (
+                <li key={link.label}>
+                  <FooterLink {...link} />
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-xs font-medium uppercase tracking-wider text-white/40">
-              Products
+            <h4 className="text-muted-foreground text-[11px] font-semibold tracking-[0.14em] uppercase">
+              Company
             </h4>
-            <ul className="mt-5 space-y-3.5">
-              {productLinks.map((link) => (
+            <ul className="mt-4 space-y-3">
+              {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </a>
+                  <FooterLink {...link} />
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="col-span-2 md:col-span-3">
-            <h4 className="text-xs font-medium uppercase tracking-wider text-white/40">
+            <h4 className="text-muted-foreground text-[11px] font-semibold tracking-[0.14em] uppercase">
               Resources
             </h4>
-            <ul className="mt-5 space-y-3.5">
+            <ul className="mt-4 space-y-3">
               {resourceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
+                  <FooterLink {...link} />
                 </li>
               ))}
             </ul>
-            <div className="mt-8 space-y-2 text-sm text-white/50">
+            <div className="text-muted-foreground mt-8 space-y-1.5 text-sm">
               <p>guglex.technologies@gmail.com</p>
               <p>+233 550 982 043</p>
               <p>Accra, Ghana</p>
@@ -97,7 +103,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-sm text-white/40 sm:mt-20 sm:flex-row sm:items-center sm:justify-between sm:pt-10">
+        <Separator className="mt-14" />
+        <div className="text-muted-foreground flex flex-col gap-2 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Guglex Technologies</p>
           <p>All rights reserved</p>
         </div>
