@@ -4,7 +4,7 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 
-export default function ThemeToggle({ className = '' }: { className?: string }) {
+export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
@@ -12,7 +12,6 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       type="button"
       variant="outline"
       size="icon"
-      className={className}
       aria-label="Toggle theme"
       title="Toggle theme"
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}

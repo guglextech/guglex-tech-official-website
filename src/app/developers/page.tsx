@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -116,7 +117,7 @@ export default function DevelopersPage() {
 
         {/* Docs body: sidebar + content */}
         <section className="bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SiteContainer>
             <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-12">
               {/* Sidebar — horizontal scroll on mobile, sticky column on desktop */}
               <aside className="lg:col-span-3">
@@ -793,7 +794,7 @@ function verifyWebhook(req) {
                 </div>
               </div>
             </div>
-          </div>
+          </SiteContainer>
         </section>
     </SiteShell>
   );

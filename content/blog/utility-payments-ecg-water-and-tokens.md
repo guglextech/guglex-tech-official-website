@@ -5,7 +5,6 @@ date: "2026-08-13"
 author: "Guglex Technologies"
 category: "Payments"
 tags: ["ECG", "Ghana Water", "Utilities", "Ewale"]
-featured: false
 ---
 
 Utility payments look like a form and a button. They are not.

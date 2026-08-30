@@ -5,7 +5,6 @@ date: "2026-06-12"
 author: "Guglex Technologies"
 category: "Developers"
 tags: ["USSD", "Mobile Money", "Payments", "Integration"]
-featured: false
 ---
 
 USSD is still one of the most reliable ways to collect money in Ghana. It runs on every GSM phone, does not need data, and customers already know how to dial a shortcode.

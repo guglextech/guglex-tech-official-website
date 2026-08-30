@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import SiteCta from '@/components/SiteCta';
 import {
   estimateReadingMinutes,
@@ -79,7 +80,7 @@ export default async function BlogPost({
   return (
     <SiteShell>
       <article className="bg-background">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-24">
+        <SiteContainer className="site-section" narrow>
           <Link
             href="/blog"
             className="mb-10 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -137,7 +138,7 @@ export default async function BlogPost({
               </aside>
             ) : null}
           </div>
-        </div>
+        </SiteContainer>
       </article>
 
       <SiteCta

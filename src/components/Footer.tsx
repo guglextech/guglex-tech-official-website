@@ -49,7 +49,7 @@ function FooterLink({
 export default function Footer() {
   return (
     <footer className="border-t bg-card text-foreground">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <div className="site-container py-16 lg:py-20">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-12 md:gap-8">
           <div className="col-span-2 md:col-span-4">
             <BrandLogo />

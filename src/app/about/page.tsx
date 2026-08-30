@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import SiteCta from '@/components/SiteCta';
 
@@ -37,8 +38,8 @@ export default function About() {
         description="Guglex Technologies is a product-focused software company helping businesses across Africa design, build, and scale digital products that drive real results."
       />
 
-      <section className="border-b bg-background py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+      <section className="site-section border-b bg-background">
+        <SiteContainer className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
               Who we are
@@ -66,11 +67,11 @@ export default function About() {
               and systems that hold up after launch.
             </p>
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
-      <section className="bg-card py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section bg-card">
+        <SiteContainer>
           <div className="mb-12 max-w-2xl">
             <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
               Foundation
@@ -112,11 +113,11 @@ export default function About() {
               </div>
             </article>
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
-      <section className="border-y bg-background py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section border-y bg-background">
+        <SiteContainer>
           <div className="mb-12 max-w-2xl">
             <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
               Values
@@ -144,7 +145,7 @@ export default function About() {
               </article>
             ))}
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
       <SiteCta

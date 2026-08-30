@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Instrument_Sans } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { TooltipProvider } from '@/components/ui/tooltip';
 import { Toaster } from '@/components/ui/sonner';
 import { cn } from '@/lib/utils';
 import './globals.css';
@@ -49,10 +48,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
-          <TooltipProvider>
-            {children}
-            <Toaster />
-          </TooltipProvider>
+          {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

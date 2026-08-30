@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import {
   Accordion,
@@ -45,8 +46,8 @@ export default function FAQ() {
         description="Quick answers about Guglex, our products, and how we work."
       />
 
-      <section className="bg-background py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section bg-background">
+        <SiteContainer>
           <Accordion className="border-t">
             {faqs.map((faq, index) => (
               <AccordionItem key={faq.question} value={`item-${index}`}>
@@ -67,7 +68,7 @@ export default function FAQ() {
             </Link>
             .
           </p>
-        </div>
+        </SiteContainer>
       </section>
     </SiteShell>
   );

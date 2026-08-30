@@ -5,7 +5,6 @@ date: "2026-08-06"
 author: "Guglex Technologies"
 category: "Product"
 tags: ["USSD", "Ewale", "Product Design", "Payments"]
-featured: false
 ---
 
 If you only ship a website, you are shipping for a subset of the country. That subset is real — and growing — but it is not the whole market.

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import SiteContainer from '@/components/SiteContainer';
 import { Button } from '@/components/ui/button';
 
 type CtaLink = {
@@ -20,7 +21,7 @@ export default function SiteCta({
 }) {
   return (
     <section className="border-t bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-24 lg:px-8">
+      <SiteContainer className="site-section">
         <div className="max-w-2xl">
           <h2 className="mb-4 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
             {title}
@@ -38,7 +39,7 @@ export default function SiteCta({
             ) : null}
           </div>
         </div>
-      </div>
+      </SiteContainer>
     </section>
   );
 }

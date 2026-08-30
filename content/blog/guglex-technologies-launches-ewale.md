@@ -5,7 +5,6 @@ date: "2026-07-16"
 author: "Guglex Technologies"
 category: "Product"
 tags: ["Ewale", "Launch", "Payments", "USSD"]
-featured: true
 ---
 
 Ewale is live. It is the consumer product we built so people in Ghana can pay for everyday services without switching between portals, agents, and half-finished checkout flows.

@@ -1,4 +1,5 @@
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import SiteCta from '@/components/SiteCta';
 import { Badge } from '@/components/ui/badge';
@@ -45,8 +46,8 @@ export default function Companies() {
         description="Selected partners across payments, publishing, membership, and digital services."
       />
 
-      <section className="bg-background py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section bg-background">
+        <SiteContainer>
           <div className="border-t">
             {partners.map((partner, index) => (
               <article
@@ -68,7 +69,7 @@ export default function Companies() {
               </article>
             ))}
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
       <SiteCta

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -79,8 +80,8 @@ export default function Contact() {
         description="Share a few details about your product, payment flow, or platform challenge. We typically respond within one business day."
       />
 
-      <section className="bg-background py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section bg-background">
+        <SiteContainer>
           <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h2 className="mb-8 text-2xl font-semibold tracking-tight">Send a message</h2>
@@ -212,7 +213,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-        </div>
+        </SiteContainer>
       </section>
     </SiteShell>
   );

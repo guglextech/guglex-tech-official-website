@@ -1,3 +1,5 @@
+import SiteContainer from '@/components/SiteContainer';
+
 export default function PageHero({
   kicker,
   title,
@@ -9,7 +11,7 @@ export default function PageHero({
 }) {
   return (
     <section className="border-b bg-card">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+      <SiteContainer className="site-section">
         {kicker ? (
           <p className="mb-4 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
             {kicker}
@@ -21,7 +23,7 @@ export default function PageHero({
         {description ? (
           <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">{description}</p>
         ) : null}
-      </div>
+      </SiteContainer>
     </section>
   );
 }

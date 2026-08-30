@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import SiteCta from '@/components/SiteCta';
 import { Button } from '@/components/ui/button';
 import {
@@ -66,7 +67,7 @@ export default function Home() {
   return (
     <SiteShell>
       <section className="border-b bg-card">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
+        <SiteContainer className="py-24 md:py-32">
           <h1 className="home-fade-up max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
             Software and payments for businesses across Africa.
           </h1>
@@ -83,11 +84,11 @@ export default function Home() {
               Explore product
             </Button>
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
       <section className="border-b bg-card">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <SiteContainer className="py-10">
           <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 md:gap-x-10">
             {integrations.map((brand) => (
               <li key={brand.name} className="flex h-7 items-center sm:h-8">
@@ -100,11 +101,11 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </div>
+        </SiteContainer>
       </section>
 
-      <section className="bg-background py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section bg-background">
+        <SiteContainer>
           <div className="mb-12 max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">What we do</h2>
             <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
@@ -138,11 +139,11 @@ export default function Home() {
             View services
             <ArrowRight />
           </Button>
-        </div>
+        </SiteContainer>
       </section>
 
-      <section className="border-y bg-card py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section border-y bg-card">
+        <SiteContainer>
           <div className="mb-12 max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Our products</h2>
             <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
@@ -170,7 +171,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
       <SiteCta

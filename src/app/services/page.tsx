@@ -1,4 +1,5 @@
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import SiteCta from '@/components/SiteCta';
 
@@ -74,8 +75,8 @@ export default function Services() {
       />
 
         {/* Services list */}
-        <section className="bg-background py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className="site-section bg-background">
+          <SiteContainer>
             <div className="mb-12 max-w-2xl md:mb-16">
               <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
                 What we offer
@@ -126,12 +127,11 @@ export default function Services() {
                 </article>
               ))}
             </div>
-          </div>
+          </SiteContainer>
         </section>
 
-        {/* Process */}
-        <section className="border-y border-border bg-muted py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className="site-section border-y bg-muted">
+          <SiteContainer>
             <div className="mb-12 max-w-2xl">
               <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
                 How we work
@@ -153,7 +153,7 @@ export default function Services() {
                 </div>
               ))}
             </div>
-          </div>
+          </SiteContainer>
         </section>
 
       <SiteCta

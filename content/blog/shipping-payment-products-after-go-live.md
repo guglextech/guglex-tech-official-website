@@ -5,7 +5,6 @@ date: "2026-04-22"
 author: "Guglex Technologies"
 category: "Company"
 tags: ["Delivery", "Operations", "Payments", "Product"]
-featured: false
 ---
 
 A marketing site can launch and then sit. A payment product cannot.

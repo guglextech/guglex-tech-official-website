@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
 import PageHero from '@/components/PageHero';
 import SiteCta from '@/components/SiteCta';
 import { Button } from '@/components/ui/button';
@@ -52,8 +53,8 @@ export default function ProductPage() {
         description="Payment platforms designed for African markets — with the same engineering standards we bring to every client engagement."
       />
 
-      <section className="bg-background py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="site-section bg-background">
+        <SiteContainer>
           <div className="border-t">
             {products.map((product, index) => (
               <article
@@ -97,7 +98,7 @@ export default function ProductPage() {
               </article>
             ))}
           </div>
-        </div>
+        </SiteContainer>
       </section>
 
       <SiteCta

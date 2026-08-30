@@ -5,7 +5,6 @@ date: "2026-08-20"
 author: "Guglex Technologies"
 category: "Developers"
 tags: ["Webhooks", "APIs", "Payments", "Engineering"]
-featured: false
 ---
 
 Most payment bugs in production are not “the API is down.” They are state bugs. Your database says paid. The provider says pending. The customer has a token. Or none of those agree.

@@ -5,7 +5,6 @@ date: "2026-05-28"
 author: "Guglex Technologies"
 category: "Developers"
 tags: ["Hubtel", "Paystack", "Mobile Money", "Integration"]
-featured: false
 ---
 
 A payment integration is not “we called the API.” It is a system that stays correct when the provider is slow, the customer retries, and the network drops the prompt.

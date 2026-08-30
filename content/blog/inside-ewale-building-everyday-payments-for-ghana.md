@@ -5,7 +5,6 @@ date: "2026-07-23"
 author: "Guglex Technologies"
 category: "Product"
 tags: ["Ewale", "Product", "Payments", "Ghana"]
-featured: false
 ---
 
 When we started Ewale, the brief was not “build a fintech app.” It was: make four everyday purchases in Ghana feel obvious.
