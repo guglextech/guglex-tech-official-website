@@ -1,38 +1,49 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import { getAllPosts } from '../../../lib/blog';
-import BlogClient from './BlogClient';
+import type { Metadata } from 'next';
+import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
+import SiteCta from '@/components/SiteCta';
+import { estimateReadingMinutes, getAllPosts, getCategories } from '../../../lib/blog';
+import BlogClient, { type BlogListPost } from './BlogClient';
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    'Guides for everyday payments — result checkers, airtime, data, and bills in Ghana, plus how to pay on *714*22#.',
+};
 
 export default function Blog() {
-  const posts = getAllPosts();
+  const posts: BlogListPost[] = getAllPosts().map(({ content, ...post }) => ({
+    ...post,
+    readingMinutes: estimateReadingMinutes(content),
+  }));
+  const categories = getCategories().sort((a, b) => a.localeCompare(b));
 
   return (
-    <>
-      <Navigation />
-      <main className="pt-16">
-        <section className="relative bg-black text-white overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(1,148,255,0.16),_transparent_55%)]" />
-          <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 md:py-32 lg:px-8">
-            <p className="mb-6 text-sm font-semibold uppercase tracking-[0.25em] text-brand-blue">
-              Blog
-            </p>
-            <h1 className="mb-6 max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-              Insights from building products.
-            </h1>
-            <p className="max-w-xl text-lg leading-relaxed text-white/65 md:text-xl">
-              Notes on payments, software, and digital products for businesses
-              across Africa and beyond.
-            </p>
-          </div>
-        </section>
+    <SiteShell>
+      <section className="bg-background">
+        <SiteContainer className="site-section">
+          <p className="mb-3 text-xs font-medium tracking-[0.18em] text-muted-foreground uppercase">
+            Blog
+          </p>
+          <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+            Guides for everyday payments
+          </h1>
+          <p className="text-muted-foreground mt-5 max-w-xl text-lg leading-relaxed">
+            Result checkers, airtime, data, and bills in Ghana — plus how to pay on *714*22#.
+          </p>
 
-        <section className="bg-white py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <BlogClient posts={posts} />
+          <div className="mt-12 md:mt-16">
+            <BlogClient posts={posts} categories={categories} />
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </SiteContainer>
+      </section>
+
+      <SiteCta
+        title="Building a payments product?"
+        description="We design, ship, and operate collection systems — web, USSD, and the provider work in between."
+        primary={{ href: '/contact', label: 'Talk to us' }}
+        secondary={{ href: '/developers', label: 'Read the docs' }}
+      />
+    </SiteShell>
   );
 }

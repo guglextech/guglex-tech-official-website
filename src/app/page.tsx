@@ -1,301 +1,393 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import SiteShell from '@/components/SiteShell';
+import SiteContainer from '@/components/SiteContainer';
+import SiteCta from '@/components/SiteCta';
+import { SiteHeroVisual, SiteMedia } from '@/components/SiteMedia';
+import { siteImages } from '@/lib/site-images';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+
+const stats = [
+  { value: '2', label: 'Products in production' },
+  { value: 'USSD', label: '*714*22# live in Ghana' },
+  { value: 'Africa', label: 'Built for local rails' },
+];
+
+const integrations = [
+  { name: 'MTN', src: '/brands/mtn.svg' },
+  { name: 'Telecel', src: '/brands/telecel.svg' },
+  { name: 'Ghana Water', src: '/brands/ghana-water.svg' },
+  { name: 'ECG', src: '/brands/ecg.svg' },
+  { name: 'GoTV', src: '/brands/gotv.svg' },
+  { name: 'StarTimes', src: '/brands/startimes.svg' },
+  { name: 'WAEC', src: '/brands/waec.svg' },
+  { name: 'Hubtel', src: '/brands/hubtel.svg' },
+  { name: 'Paystack', src: '/brands/paystack.svg' },
+];
 
 const capabilities = [
   {
-    title: 'Web & Product Engineering',
+    title: 'Product engineering',
     description:
-      'Custom platforms, dashboards, and customer-facing products built for reliability and scale.',
+      'Custom platforms and customer-facing products built for reliability, clarity, and scale.',
   },
   {
-    title: 'Payments & Digital Infrastructure',
+    title: 'Payments infrastructure',
     description:
-      'Mobile money, USSD, and payment systems designed for African markets and real-world usage.',
+      'Mobile money, USSD, and gateway integrations designed for African production traffic.',
   },
   {
-    title: 'Mobile Experiences',
+    title: 'Mobile experiences',
     description:
-      'Native and cross-platform apps that feel fast, clear, and easy to use from day one.',
+      'Apps and flows that stay obvious from first open to confirmed transaction.',
   },
   {
-    title: 'Strategy & Delivery',
+    title: 'Delivery & operations',
     description:
-      'From discovery to launch — architecture, design, and engineering aligned to business outcomes.',
+      'Architecture, launch, and monitoring so systems stay dependable after go-live.',
   },
 ];
 
 const products = [
   {
-    name: 'Ewale - Consumer Payments(*714*22#)',
-    description: 'Consumer payments for airtime, data, ECG prepaid, and WASSCE results.',
+    name: 'Ewale',
+    tag: 'Consumer payments',
+    image: siteImages.products.ewale,
+    description:
+      'Airtime, data, ECG prepaid, and WASSCE results across major networks — on the web and via USSD *714*22#.',
+    points: ['Multi-network airtime and data', 'ECG prepaid tokens', 'Result checkers', 'Web and USSD'],
     href: 'https://ewalepay.com',
   },
   {
     name: 'Gyepayments',
-    description: 'Business payment collection with mobile money, bank transfer, and cards.',
-    href: 'https://merchant.guglextechnologies.com/landing-page?utm_source=guglex&utm_medium=website&utm_campaign=landing-page',
+    tag: 'Business collections',
+    image: siteImages.products.gyepayments,
+    description:
+      'Payment collection for businesses — mobile money, bank transfer, and cards in one place.',
+    points: ['Mobile money', 'Bank transfer', 'Card payments', 'Merchant checkout'],
+    href: 'https://gyepayments.guglextechnologies.com',
   },
 ];
 
+const work = [
+  {
+    name: 'Ewale',
+    category: 'Consumer payments',
+    image: siteImages.work.ewale,
+    summary: 'Everyday purchases for Ghana — airtime, utilities, and result checkers.',
+  },
+  {
+    name: 'Hubtel integration',
+    category: 'Payments',
+    image: siteImages.work.hubtel,
+    summary: 'Production collection with callbacks, retries, and reconciliation.',
+  },
+  {
+    name: 'Jolee Bakery',
+    category: 'Ecommerce',
+    image: siteImages.work.jolee,
+    summary: 'Storefront checkout with Hubtel and Stripe for local and card payments.',
+  },
+];
 
+const process = [
+  {
+    step: '01',
+    title: 'Discover',
+    description: 'Goals, channels, and the failure cases you are willing to live with.',
+  },
+  {
+    step: '02',
+    title: 'Build',
+    description: 'Design and engineering in short cycles, including declines and timeouts.',
+  },
+  {
+    step: '03',
+    title: 'Launch',
+    description: 'Production keys, monitoring, and support after the first real payment.',
+  },
+];
 
 export default function Home() {
   return (
-    <>
-      <Navigation />
-      <main className="pt-16">
-        {/* Hero */}
-        <section className="relative min-h-[88vh] flex items-end overflow-hidden bg-black text-white">
-          <Image
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2400&q=80"
-            alt=""
-            fill
-            priority
-            className="object-cover opacity-35"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(1,148,255,0.18),_transparent_55%)]" />
-
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-32 md:pb-28 md:pt-40">
-            <p className="home-fade-up text-sm font-semibold uppercase tracking-[0.25em] text-brand-blue mb-6">
-              Guglex Technologies
-            </p>
-            <h1 className="home-fade-up home-fade-up-delay-1 max-w-4xl text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
-              Technology that builds businesses.
-            </h1>
-            <p className="home-fade-up home-fade-up-delay-2 max-w-xl text-lg md:text-xl text-white/70 leading-relaxed mb-10">
-              We design and ship digital products, payments, and infrastructure
-              for companies across Africa and beyond.
-            </p>
-            <div className="home-fade-up home-fade-up-delay-3 flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold hover:bg-[#0176cc] transition-colors"
-              >
-                Start a project
-                <ArrowRight className="w-4 h-4" strokeWidth={2} />
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center px-8 py-4 border border-white/25 text-white font-semibold hover:border-white hover:bg-white/5 transition-colors"
-              >
-                Explore services
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Proof */}
-        <section className="border-b border-gray-200 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4">
-              {[
-                { value: '7+', label: 'Years building' },
-                { value: '31+', label: 'Projects delivered' },
-                { value: '22+', label: 'Companies served' },
-                { value: '99%', label: 'Client satisfaction' },
-              ].map((stat, i) => (
-                <div
-                  key={stat.label}
-                  className={`py-10 md:py-12 ${
-                    i > 0 ? 'md:border-l md:border-gray-200 md:pl-8' : ''
-                  } ${i % 2 === 1 ? 'pl-6 md:pl-8' : ''} ${
-                    i >= 2 ? 'border-t border-gray-200 md:border-t-0' : ''
-                  }`}
-                >
-                  <div className="text-3xl md:text-4xl font-bold text-black tracking-tight">
-                    {stat.value}
-                  </div>
-                  <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Capabilities */}
-        <section className="py-24 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16 md:mb-20">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-blue mb-4">
-                What we do
+    <SiteShell>
+      <section className="relative border-b bg-card">
+        <div className="site-section-grid pointer-events-none absolute inset-0" aria-hidden />
+        <SiteContainer className="relative py-20 md:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-7">
+              <Badge variant="secondary" className="home-fade-up mb-6">
+                Payments & product engineering
+              </Badge>
+              <h1 className="home-fade-up home-fade-up-delay-1 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
+                Software and payments for businesses across Africa.
+              </h1>
+              <p className="home-fade-up home-fade-up-delay-2 text-muted-foreground mt-6 max-w-xl text-lg leading-relaxed">
+                Guglex Technologies designs and ships payment systems, digital
+                platforms, and products built for production use.
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-5">
-                Capabilities built for real business outcomes.
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                End-to-end product delivery — from strategy and design through
-                engineering, launch, and ongoing support.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0 border-t border-gray-200">
-              {capabilities.map((item, index) => (
-                <div
-                  key={item.title}
-                  className="group border-b border-gray-200 py-8 md:py-10"
-                >
-                  <div className="flex items-start gap-5">
-                    <span className="text-sm font-semibold text-brand-blue tabular-nums pt-1">
-                      0{index + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-xl font-bold text-black mb-2 group-hover:text-brand-blue transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed max-w-md">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12">
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:gap-3 transition-all"
-              >
-                View all services
-                <ArrowRight className="w-4 h-4" strokeWidth={2} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Products */}
-        <section className="py-24 md:py-28 bg-gray-50 border-y border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              <div className="lg:col-span-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-green mb-4">
-                  Our products
-                </p>
-                <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-5">
-                  Platforms we build and operate. 
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Beyond client work, we run products that move money and connect
-                  people to essential services every day.
-                </p>
-              </div>
-
-              <div className="lg:col-span-7 space-y-4">
-                {products.map((product) => (
-                  <a
-                    key={product.name}
-                    href={product.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-start justify-between gap-6 bg-white border border-gray-200 px-6 py-7 md:px-8 hover:border-brand-blue transition-colors"
-                  >
-                    <div>
-                      <h3 className="text-xl font-bold text-black mb-2 group-hover:text-brand-blue transition-colors">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed max-w-lg">
-                        {product.description}
-                      </p>
-                    </div>
-                    <ArrowUpRight
-                      className="w-5 h-5 text-gray-300 flex-shrink-0 mt-1 transition-all group-hover:text-brand-blue group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      strokeWidth={2}
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Approach */}
-        <section className="py-24 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl mb-16">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-orange mb-4">
-                How we work
-              </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-black tracking-tight mb-5">
-                Clear process. Reliable delivery.
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                A focused engagement model that keeps scope clear, quality high,
-                and timelines honest.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-              {[
-                {
-                  step: '01',
-                  title: 'Discover',
-                  description:
-                    'We clarify goals, constraints, and success metrics before a single line of code.',
-                },
-                {
-                  step: '02',
-                  title: 'Build',
-                  description:
-                    'Design and engineering move together in short cycles with transparent progress.',
-                },
-                {
-                  step: '03',
-                  title: 'Launch & support',
-                  description:
-                    'We ship to production, monitor, and stay available as your product grows.',
-                },
-              ].map((item) => (
-                <div key={item.step}>
-                  <div className="text-sm font-semibold text-brand-blue mb-4">
-                    {item.step}
-                  </div>
-                  <div className="h-px w-12 bg-brand-blue mb-6" />
-                  <h3 className="text-xl font-bold text-black mb-3">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="relative bg-black text-white overflow-hidden">
-          <div className="brand-bar" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(1,148,255,0.15),_transparent_50%)]" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-28">
-            <div className="max-w-3xl">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-6">
-                Let&apos;s build what&apos;s next.
-              </h2>
-              <p className="text-lg text-white/65 leading-relaxed mb-10 max-w-xl">
-                Tell us about your product, payment flow, or platform challenge.
-                We&apos;ll respond with a clear next step.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold hover:bg-[#0176cc] transition-colors"
-                >
+              <div className="home-fade-up home-fade-up-delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
+                <Button size="lg" render={<Link href="/contact" />}>
                   Talk to us
-                  <ArrowRight className="w-4 h-4" strokeWidth={2} />
-                </Link>
-                <Link
-                  href="/use-cases"
-                  className="inline-flex items-center justify-center px-8 py-4 border border-white/25 text-white font-semibold hover:border-white hover:bg-white/5 transition-colors"
-                >
+                  <ArrowRight />
+                </Button>
+                <Button size="lg" variant="outline" render={<Link href="/use-cases" />}>
                   See our work
-                </Link>
+                </Button>
               </div>
             </div>
+
+            <div className="home-fade-up home-fade-up-delay-3 lg:col-span-5">
+              <SiteHeroVisual
+                image={{
+                  src: siteImages.hero.home,
+                  alt: 'Mobile payment experience built for African markets',
+                }}
+              >
+                <Card className="shadow-md">
+                  <CardHeader className="border-b py-4">
+                    <p className="text-muted-foreground text-xs font-medium tracking-[0.16em] uppercase">
+                      In production
+                    </p>
+                    <CardTitle className="text-base">Products we operate</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-0 p-0">
+                    {products.map((product, index) => (
+                      <a
+                        key={product.name}
+                        href={product.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-start justify-between gap-4 px-4 py-3.5 transition-colors hover:bg-muted/40 ${
+                          index === 0 ? 'border-b' : ''
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold">{product.name}</p>
+                            <Badge variant="outline">{product.tag}</Badge>
+                          </div>
+                          <p className="text-muted-foreground mt-1 line-clamp-2 text-sm leading-relaxed">
+                            {product.description}
+                          </p>
+                        </div>
+                        <ArrowUpRight className="text-muted-foreground mt-1 size-4 shrink-0" />
+                      </a>
+                    ))}
+                  </CardContent>
+                </Card>
+              </SiteHeroVisual>
+            </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+
+          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-xl border bg-border sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="bg-card px-5 py-5">
+                <p className="text-xl font-semibold tracking-tight">{stat.value}</p>
+                <p className="text-muted-foreground mt-1 text-sm">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+
+      <section className="border-b bg-background">
+        <SiteContainer className="py-10 md:py-12">
+          <p className="text-muted-foreground mb-6 text-xs font-medium tracking-[0.16em] uppercase">
+            Networks and providers we integrate
+          </p>
+          <div className="site-logo-grid">
+            {integrations.map((brand) => (
+              <div key={brand.name} className="site-logo-cell">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={brand.src}
+                  alt={brand.name}
+                  className="h-7 w-auto max-w-[6.5rem] object-contain opacity-60 grayscale transition-opacity hover:opacity-100 dark:invert sm:h-8"
+                />
+              </div>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+
+      <section className="site-section bg-background">
+        <SiteContainer>
+          <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
+                Capabilities
+              </p>
+              <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">What we do</h2>
+              <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
+                End-to-end product delivery — from discovery through engineering, launch, and support.
+              </p>
+            </div>
+            <Button variant="outline" render={<Link href="/services" />}>
+              View services
+              <ArrowRight />
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {capabilities.map((item, index) => (
+              <Card key={item.title} className="h-full">
+                <CardHeader>
+                  <p className="text-sm font-semibold text-brand-blue tabular-nums">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {item.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+
+      <section className="site-section border-y bg-card">
+        <SiteContainer>
+          <div className="mb-12 max-w-2xl md:mb-16">
+            <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
+              Products
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              Platforms we build and operate
+            </h2>
+            <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
+              The same constraints we meet in client work — providers, retries, and reconciliation — are ones we live with every day.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {products.map((product) => (
+              <Card key={product.name} className="h-full overflow-hidden">
+                <SiteMedia
+                  src={product.image}
+                  alt={product.name}
+                  aspectRatio="16/9"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  rounded={false}
+                  className="border-0 border-b shadow-none"
+                />
+                <CardHeader>
+                  <Badge variant="secondary">{product.tag}</Badge>
+                  <CardTitle className="mt-1 text-2xl">{product.name}</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {product.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Separator className="mb-4" />
+                  <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                    {product.points.map((point) => (
+                      <li key={point} className="text-muted-foreground flex items-start gap-2 text-sm">
+                        <span className="mt-2 size-1 shrink-0 rounded-full bg-brand-blue" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    variant="link"
+                    className="mt-5 px-0"
+                    render={<a href={product.href} target="_blank" rel="noopener noreferrer" />}
+                  >
+                    Visit {product.name}
+                    <ArrowUpRight />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+
+      <section className="site-section bg-background">
+        <SiteContainer>
+          <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
+                Selected work
+              </p>
+              <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+                Projects that moved money and served users
+              </h2>
+            </div>
+            <Button variant="outline" render={<Link href="/use-cases" />}>
+              All use cases
+              <ArrowRight />
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {work.map((item) => (
+              <Card key={item.name} className="h-full overflow-hidden">
+                <SiteMedia
+                  src={item.image}
+                  alt={item.name}
+                  aspectRatio="16/10"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  rounded={false}
+                  className="border-0 border-b shadow-none"
+                />
+                <div className="px-5 py-6">
+                  <p className="text-muted-foreground text-sm">{item.category}</p>
+                  <h3 className="mt-2 text-lg font-semibold tracking-tight">{item.name}</h3>
+                  <p className="text-muted-foreground mt-2 leading-relaxed">{item.summary}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+
+      <section className="site-section border-t bg-card">
+        <SiteContainer>
+          <div className="mb-12 max-w-2xl md:mb-16">
+            <p className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-brand-blue uppercase">
+              Approach
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              A clear path from brief to launch
+            </h2>
+            <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
+              Simple stages, honest timelines, and delivery you can track.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {process.map((item) => (
+              <Card key={item.step} className="h-full">
+                <CardHeader>
+                  <p className="text-sm font-semibold text-brand-blue">{item.step}</p>
+                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {item.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </SiteContainer>
+      </section>
+
+      <SiteCta
+        title="Let's build what's next."
+        description="Tell us about your product, payment flow, or platform challenge. We'll respond with a clear next step."
+        primary={{ href: '/contact', label: 'Start a conversation' }}
+        secondary={{ href: '/use-cases', label: 'See our work' }}
+      />
+    </SiteShell>
   );
 }
